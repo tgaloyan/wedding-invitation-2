@@ -1,1 +1,226 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ալեքսանդր & Մարիամ — Հարսանեկան Հրավիրատոմս</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8c6239; 
+            --text-color: #333333;
+            --light-bg: #fdfbf7;      
+            --border-color: #e5dec9;
+        }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', 'Playfair Display', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .hero { text-align: center; padding: 80px 20px 30px 20px; }
+        .hero .monogram {
+            font-family: 'Great Vibes', cursive;
+            font-size: 45pt;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24pt;
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .event-details { text-align: center; margin-bottom: 40px; font-family: 'Playfair Display', serif; }
+        .event-details .location { font-size: 14pt; font-weight: 600; color: var(--primary-color); margin-bottom: 5px; }
+        .event-details .datetime { font-size: 12pt; font-style: italic; color: #555; }
+
+        /* Countdown */
+        .countdown-container { display: flex; justify-content: center; gap: 15px; max-width: 400px; margin: 0 auto 50px auto; padding: 0 10px; }
+        .countdown-box {
+            background: #ffffff; border: 1px solid var(--border-color); width: 75px; padding: 12px 0; text-align: center; border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(140, 98, 57, 0.03);
+        }
+        .countdown-box .number { font-family: 'Playfair Display', serif; font-size: 18pt; font-weight: 600; color: var(--primary-color); display: block; line-height: 1.2; }
+        .countdown-box .label { font-size: 8pt; text-transform: uppercase; color: #777; letter-spacing: 1px; margin-top: 3px; display: block; }
+
+        /* Dress Code */
+        .dress-code-section {
+            max-width: 500px; margin: 0 auto 40px auto; text-align: center; background: #ffffff; padding: 30px 20px; border-radius: 4px;
+            border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(140, 98, 57, 0.04);
+        }
+        .dress-code-section h3 { font-family: 'Playfair Display', serif; font-size: 14pt; font-weight: 400; margin-bottom: 10px; text-transform: uppercase; }
+        .dress-code-section p { font-size: 9.5pt; color: #666; margin-bottom: 20px; }
+        .color-palette { display: flex; justify-content: center; gap: 12px; }
+        .color-circle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.05); }
+        .c1 { background-color: #e8d8c8; } .c2 { background-color: #d2bfa6; } .c3 { background-color: #bfae99; }
+        .c4 { background-color: #e0e0e0; } .c5 { background-color: #b8b8b8; } .c6 { background-color: #8e8e8e; }
+
+        /* RSVP Form */
+        .wedding-form-container {
+            max-width: 500px; margin: 0 auto 80px auto; background: #ffffff; padding: 40px 35px; border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(140, 98, 57, 0.06); border: 1px solid var(--border-color); position: relative;
+        }
+        .wedding-form-container h2 { font-family: 'Playfair Display', serif; font-size: 18pt; font-weight: 400; text-align: center; margin-bottom: 10px; color: #111; }
+        .wedding-form-container .subtitle { font-size: 9pt; text-align: center; color: #777; margin-bottom: 35px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .form-group { margin-bottom: 25px; text-align: left; }
+        .form-group label { display: block; font-size: 10pt; font-weight: 500; margin-bottom: 8px; color: #444; }
+        .form-group input[type="text"], .form-group input[type="number"], .form-group select {
+            width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); background-color: #fafafa; border-radius: 3px;
+            font-family: 'Montserrat', sans-serif; font-size: 10.5pt; color: var(--text-color); transition: all 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary-color); background-color: #ffffff; }
+        .form-group select {
+            cursor: pointer; appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%238c6239' d='M0 0l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat; background-position: right 15px center;
+        }
+
+        .submit-btn {
+            width: 100%; padding: 15px; background-color: var(--primary-color); color: #ffffff; border: none; border-radius: 3px;
+            font-family: 'Montserrat', sans-serif; font-size: 11pt; font-weight: 500; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: background-color 0.3s ease; margin-top: 10px;
+        }
+        .submit-btn:hover { background-color: #734e2c; }
+        .submit-btn:disabled { background-color: #bfae99; cursor: not-allowed; }
+
+        .success-message {
+            display: none; text-align: center; padding: 20px; font-family: 'Playfair Display', serif;
+            font-size: 14pt; color: var(--primary-color); font-style: italic;
+        }
+
+        .footer-deco { text-align: center; padding-bottom: 60px; font-family: 'Great Vibes', cursive; font-size: 24pt; color: var(--primary-color); opacity: 0.6; }
+
+        @media (max-width: 600px) { .wedding-form-container, .dress-code-section { margin: 20px 15px 40px 15px; padding: 30px 20px; } .hero h1 { font-size: 20pt; } }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="monogram">A & M</div>
+        <h1>Ալեքսանդր և Մարիամ</h1>
+    </header>
+
+    <section class="event-details">
+        <div class="location">«Դվին» Ռեստորան</div>
+        <div class="datetime">Հունիսի 30, 2026 • Ժամը 17:00</div>
+    </section>
+
+    <div class="countdown-container">
+        <div class="countdown-box"><span class="number" id="days">00</span><span class="label">Օր</span></div>
+        <div class="countdown-box"><span class="number" id="hours">00</span><span class="label">Ժամ</span></div>
+        <div class="countdown-box"><span class="number" id="minutes">00</span><span class="label">Րոպե</span></div>
+        <div class="countdown-box"><span class="number" id="seconds">00</span><span class="label">Վրկ</span></div>
+    </div>
+
+    <section class="dress-code-section">
+        <h3>Dress Code</h3>
+        <p>Մեզ համար շատ հաճելի կլինի, եթե հետևեք մեր տոնական երեկոյի գունային գամմային՝ մաշկագույնի և մոխրագույնի երանգներով:</p>
+        <div class="color-palette">
+            <div class="color-circle c1"></div><div class="color-circle c2"></div><div class="color-circle c3"></div>
+            <div class="color-circle c4"></div><div class="color-circle c5"></div><div class="color-circle c6"></div>
+        </div>
+    </section>
+
+    <div class="wedding-form-container">
+        <div id="formContent">
+            <h2>Հաստատել Մասնակցությունը</h2>
+            <div class="subtitle">Խնդրում ենք պատասխանել մինչև 15.06.2026</div>
+            
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="name">Ձեր Անունը, Ազգանունը *</label>
+                    <input type="text" id="name" name="Name" placeholder="Արմեն և Աննա Հակոբյաններ" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="attendance">Ներկա կգտնվե՞ք միջոցառմանը *</label>
+                    <select id="attendance" name="Attendance" required>
+                        <option value="" disabled selected>Խնդրում ենք ընտրել...</option>
+                        <option value="Այո, մեծ սիրով">Այո, մեծ սիրով կգանք ✨</option>
+                        <option value="Ցավոք, չենք կարող">Ցավոք, չենք կարողանա գալ</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Հյուրերի քանակը (ձեզ հետ միասին)</label>
+                    <input type="number" id="guests" name="GuestsCount" min="1" max="10" value="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="side">Ո՞ւմ կողմից եք հրավիրված *</label>
+                    <select id="side" name="Side" required>
+                        <option value="" disabled selected>Խնդրում ենք ընտրել...</option>
+                        <option value="Տղայի">Փեսայի կողմից 🤵</option>
+                        <option value="Աղջկա">Հարսի կողմից 👰</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">Ուղարկել Պատասխանը 💍</button>
+            </form>
+        </div>
+        
+        <div id="successMessage" class="success-message">
+            Ձեր պատասխանը հաջողությամբ գրանցվեց: <br> Շնորհակալություն ✨
+        </div>
+    </div>
+
+    <div class="footer-deco">Շնորհակալություն</div>
+
+    <script>
+        // 1. COUNTDOWN
+        const weddingDate = new Date(2026, 5, 30, 17, 0, 0).getTime();
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown-container").innerHTML = "<p style='font-family:Playfair Display; font-style:italic;'>Միջոցառումը մեկնարկել է ✨</p>";
+            }
+        }, 1000);
+
+        // 2. GOOGLE SHEETS CONNECTION
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzMVRAiMi16eo-QqWgeDLyruQpT-6IxwIGJnZCaW_NTOENZQ6U7vpZBZohMaBE3A18itQ/exec';
+        const form = document.getElementById('rsvpForm');
+        const formContent = document.getElementById('formContent');
+        const successMessage = document.getElementById('successMessage');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Ուղարկվում է...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    formContent.style.display = 'none';
+                    successMessage.style.display = 'block';
+                })
+                .catch(error => {
+                    alert('Տեղի է ունեցել սխալ: Խնդրում ենք փորձել կրկին:');
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Ուղարկել Պատասխանը 💍";
+                });
+        });
+    </script>
+</body>
+</html>
